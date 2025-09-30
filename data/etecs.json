@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "ETEC de São Paulo",
+    "city": "São Paulo",
+    "photo_path": "photos/etec_sp.jpg"
+  },
+  {
+    "id": 2,
+    "name": "ETEC de Campinas",
+    "city": "Campinas",
+    "photo_path": "photos/etec_campinas.jpg"
+  },
+  {
+    "id": 3,
+    "name": "ETEC de Santos",
+    "city": "Santos",
+    "photo_path": "photos/etec_santos.jpg"
+  },
+  {
+    "id": 4,
+    "name": "ETEC de Ribeirão Preto",
+    "city": "Ribeirão Preto",
+    "photo_path": "photos/etec_rp.jpg"
+  },
+  {
+    "id": 5,
+    "name": "ETEC de São José dos Campos",
+    "city": "São José dos Campos",
+    "photo_path": "photos/etec_sjc.jpg"
+  }
+]

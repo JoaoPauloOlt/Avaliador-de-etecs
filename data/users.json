@@ -1,0 +1,10 @@
+[
+  {
+    "username": "admin",
+    "password": "123",
+    "name": "Administrador",
+    "email": "admin@etec.sp.gov.br",
+    "photo_path": "",
+    "user_type": "teacher"
+  }
+]
