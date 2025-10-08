@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from data import load_etecs, get_average_rating
+from data import get_average_rating, load_etecs
 
 class EtecListFrame(tk.Frame):
     def __init__(self, master, on_select_etec):
@@ -9,15 +9,15 @@ class EtecListFrame(tk.Frame):
         self.on_select_etec = on_select_etec
         self.etecs = load_etecs()
 
-        self.label = tk.Label(self, text="Lista das Etecs do Estado de São Paulo", font=("Helvetica", 14, "bold"))
+        self.label = tk.Label(self, text="Lista das Etecs do Estado de São Paulo", font=("Helvetica", 12, "bold"))
         self.label.pack(pady=10)
 
-        self.tree = ttk.Treeview(self, columns=("city", "avg_rating"), show="headings", selectmode="browse")
-        self.tree.heading("city", text="Cidade")
+        self.tree = ttk.Treeview(self, columns=("name", "avg_rating"), show="headings", selectmode="browse")
+        self.tree.heading("name", text="Nome da ETEC")
         self.tree.heading("avg_rating", text="Avaliação Média")
-        self.tree.column("city", width=150)
-        self.tree.column("avg_rating", width=120, anchor="center")
-        self.tree.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
+        self.tree.column("name", width=150)
+        self.tree.column("avg_rating", width=80, anchor="center")
+        self.tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         self.populate_tree()
 
@@ -25,13 +25,13 @@ class EtecListFrame(tk.Frame):
 
         # Back button
         back_button = tk.Button(self, text="Voltar ao Menu", command=self.master.show_main_menu,
-                               bg="#2196F3", fg="white", font=("Helvetica", 10, "bold"))
+                               bg="#2196F3", fg="white", font=("Helvetica", 8, "bold"))
         back_button.pack(pady=10)
 
     def populate_tree(self):
         for etec in self.etecs:
             avg_rating = get_average_rating(etec.id)
-            self.tree.insert("", "end", iid=etec.id, values=(etec.city, f"{avg_rating:.2f}"))
+            self.tree.insert("", "end", iid=etec.id, values=(etec.name, f"{avg_rating:.2f}"))
 
     def on_tree_select(self, event):
         selected_id = self.tree.selection()

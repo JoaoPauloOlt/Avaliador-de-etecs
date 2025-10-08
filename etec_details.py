@@ -19,7 +19,7 @@ class EtecDetailsFrame(tk.Frame):
 
     def create_widgets(self):
         # Title
-        title_label = tk.Label(self, text=f"Avaliação: {self.etec.name}", font=("Helvetica", 16, "bold"))
+        title_label = tk.Label(self, text=f"Avaliação: {self.etec.name}", font=("Helvetica", 12, "bold"))
         title_label.pack(pady=10)
 
         # Photo display
@@ -31,25 +31,25 @@ class EtecDetailsFrame(tk.Frame):
         stars_frame = tk.Frame(self)
         stars_frame.pack(pady=10)
 
-        stars_label = tk.Label(stars_frame, text="Avaliação (estrelas):", font=("Helvetica", 12))
+        stars_label = tk.Label(stars_frame, text="Avaliação (estrelas):", font=("Helvetica", 10))
         stars_label.pack()
 
         stars_container = tk.Frame(stars_frame)
         stars_container.pack()
 
         for i in range(6):  # 0 to 5 stars
-            star_button = tk.Button(stars_container, text=str(i), font=("Helvetica", 14),
-                                   command=lambda r=i: self.set_rating(r), width=3)
+            star_button = tk.Button(stars_container, text=str(i), font=("Helvetica", 12),
+                                   command=lambda r=i: self.set_rating(r), width=2)
             star_button.pack(side=tk.LEFT, padx=2)
             self.star_buttons.append(star_button)
 
         self.update_star_display()
 
         # Comment section
-        comment_label = tk.Label(self, text="Comentário:", font=("Helvetica", 12))
+        comment_label = tk.Label(self, text="Comentário:", font=("Helvetica", 10))
         comment_label.pack(pady=(20, 5))
 
-        self.comment_text = scrolledtext.ScrolledText(self, width=50, height=8, wrap=tk.WORD)
+        self.comment_text = scrolledtext.ScrolledText(self, width=30, height=6, wrap=tk.WORD)
         self.comment_text.pack(pady=5)
 
         # Buttons
@@ -57,25 +57,25 @@ class EtecDetailsFrame(tk.Frame):
         buttons_frame.pack(pady=20)
 
         submit_button = tk.Button(buttons_frame, text="Enviar Avaliação", command=self.submit_rating,
-                                 bg="#4CAF50", fg="white", font=("Helvetica", 10, "bold"))
+                                 bg="#4CAF50", fg="white", font=("Helvetica", 8, "bold"))
         submit_button.pack(side=tk.LEFT, padx=10)
 
         back_button = tk.Button(buttons_frame, text="Voltar", command=self.on_back,
-                               bg="#2196F3", fg="white", font=("Helvetica", 10, "bold"))
+                               bg="#2196F3", fg="white", font=("Helvetica", 8, "bold"))
         back_button.pack(side=tk.LEFT, padx=10)
 
     def load_photo(self):
         try:
             if os.path.exists(self.etec.photo_path):
                 image = Image.open(self.etec.photo_path)
-                image = image.resize((300, 200), Image.Resampling.LANCZOS)
+                image = image.resize((200, 150), Image.Resampling.LANCZOS)
                 photo = ImageTk.PhotoImage(image)
                 self.photo_label.config(image=photo)
                 self.photo_label.image = photo  # Keep a reference
             else:
-                self.photo_label.config(text="[Foto não disponível]", font=("Helvetica", 12))
+                self.photo_label.config(text="[Foto não disponível]", font=("Helvetica", 10))
         except Exception as e:
-            self.photo_label.config(text="[Erro ao carregar foto]", font=("Helvetica", 12))
+            self.photo_label.config(text="[Erro ao carregar foto]", font=("Helvetica", 10))
             print(f"Erro ao carregar foto: {e}")
 
     def set_rating(self, rating):

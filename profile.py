@@ -16,76 +16,76 @@ class ProfileFrame(tk.Frame):
 
     def create_widgets(self):
         # Title
-        title_label = tk.Label(self, text="Perfil do Usuário", font=("Helvetica", 16, "bold"))
+        title_label = tk.Label(self, text="Perfil do Usuário", font=("Helvetica", 12, "bold"))
         title_label.pack(pady=10)
 
         # Photo section
         photo_frame = tk.Frame(self)
         photo_frame.pack(pady=10)
 
-        self.photo_label = tk.Label(photo_frame, text="[Sem foto]", font=("Helvetica", 12))
+        self.photo_label = tk.Label(photo_frame, text="[Sem foto]", font=("Helvetica", 10))
         self.photo_label.pack()
 
-        change_photo_button = tk.Button(photo_frame, text="Alterar Foto", command=self.change_photo)
+        change_photo_button = tk.Button(photo_frame, text="Alterar Foto", command=self.change_photo, font=("Helvetica", 8))
         change_photo_button.pack(pady=5)
 
         self.load_user_photo()
 
         # User info section
         info_frame = tk.Frame(self)
-        info_frame.pack(pady=20, padx=20, fill=tk.X)
+        info_frame.pack(pady=10, padx=10, fill=tk.X)
 
         # Username (read-only)
-        username_label = tk.Label(info_frame, text="Usuário:", font=("Helvetica", 10, "bold"))
+        username_label = tk.Label(info_frame, text="Usuário:", font=("Helvetica", 8, "bold"))
         username_label.grid(row=0, column=0, sticky="w", pady=5)
-        self.username_entry = tk.Entry(info_frame, width=30)
+        self.username_entry = tk.Entry(info_frame, width=20)
         self.username_entry.insert(0, self.current_user.username)
         self.username_entry.config(state="readonly")
         self.username_entry.grid(row=0, column=1, pady=5, padx=(10, 0))
 
         # Name
-        name_label = tk.Label(info_frame, text="Nome:", font=("Helvetica", 10, "bold"))
+        name_label = tk.Label(info_frame, text="Nome:", font=("Helvetica", 8, "bold"))
         name_label.grid(row=1, column=0, sticky="w", pady=5)
-        self.name_entry = tk.Entry(info_frame, width=30)
+        self.name_entry = tk.Entry(info_frame, width=20)
         self.name_entry.insert(0, self.current_user.name)
         self.name_entry.grid(row=1, column=1, pady=5, padx=(10, 0))
 
         # Email
-        email_label = tk.Label(info_frame, text="Email:", font=("Helvetica", 10, "bold"))
+        email_label = tk.Label(info_frame, text="Email:", font=("Helvetica", 8, "bold"))
         email_label.grid(row=2, column=0, sticky="w", pady=5)
-        self.email_entry = tk.Entry(info_frame, width=30)
+        self.email_entry = tk.Entry(info_frame, width=20)
         self.email_entry.insert(0, self.current_user.email)
         self.email_entry.grid(row=2, column=1, pady=5, padx=(10, 0))
 
         # User type (read-only)
-        type_label = tk.Label(info_frame, text="Tipo:", font=("Helvetica", 10, "bold"))
+        type_label = tk.Label(info_frame, text="Tipo:", font=("Helvetica", 8, "bold"))
         type_label.grid(row=3, column=0, sticky="w", pady=5)
         user_type_display = "Professor" if self.current_user.user_type == "teacher" else "Estudante"
-        self.type_entry = tk.Entry(info_frame, width=30)
+        self.type_entry = tk.Entry(info_frame, width=20)
         self.type_entry.insert(0, user_type_display)
         self.type_entry.config(state="readonly")
         self.type_entry.grid(row=3, column=1, pady=5, padx=(10, 0))
 
         # Password change section
         password_frame = tk.Frame(self)
-        password_frame.pack(pady=20, padx=20, fill=tk.X)
+        password_frame.pack(pady=10, padx=10, fill=tk.X)
 
-        password_title = tk.Label(password_frame, text="Alterar Senha", font=("Helvetica", 12, "bold"))
+        password_title = tk.Label(password_frame, text="Alterar Senha", font=("Helvetica", 10, "bold"))
         password_title.pack()
 
-        current_pass_label = tk.Label(password_frame, text="Senha Atual:")
+        current_pass_label = tk.Label(password_frame, text="Senha Atual:", font=("Helvetica", 8))
         current_pass_label.pack(anchor="w", pady=(10, 0))
-        self.current_pass_entry = tk.Entry(password_frame, show="*", width=30)
+        self.current_pass_entry = tk.Entry(password_frame, show="*", width=20)
         self.current_pass_entry.pack(pady=5)
 
-        new_pass_label = tk.Label(password_frame, text="Nova Senha:")
+        new_pass_label = tk.Label(password_frame, text="Nova Senha:", font=("Helvetica", 8))
         new_pass_label.pack(anchor="w", pady=5)
-        self.new_pass_entry = tk.Entry(password_frame, show="*", width=30)
+        self.new_pass_entry = tk.Entry(password_frame, show="*", width=20)
         self.new_pass_entry.pack(pady=5)
 
-        confirm_pass_label = tk.Label(password_frame, text="Confirmar Nova Senha:")
+        confirm_pass_label = tk.Label(password_frame, text="Confirmar Nova Senha:", font=("Helvetica", 8))
         confirm_pass_label.pack(anchor="w", pady=5)
-        self.confirm_pass_entry = tk.Entry(password_frame, show="*", width=30)
+        self.confirm_pass_entry = tk.Entry(password_frame, show="*", width=20)
         self.confirm_pass_entry.pack(pady=5)
 
         # Buttons
@@ -93,11 +93,11 @@ class ProfileFrame(tk.Frame):
         buttons_frame.pack(pady=20)
 
         save_button = tk.Button(buttons_frame, text="Salvar Alterações", command=self.save_changes,
-                               bg="#4CAF50", fg="white", font=("Helvetica", 10, "bold"))
+                               bg="#4CAF50", fg="white", font=("Helvetica", 8, "bold"))
         save_button.pack(side=tk.LEFT, padx=10)
 
         back_button = tk.Button(buttons_frame, text="Voltar", command=self.on_back,
-                               bg="#2196F3", fg="white", font=("Helvetica", 10, "bold"))
+                               bg="#2196F3", fg="white", font=("Helvetica", 8, "bold"))
         back_button.pack(side=tk.LEFT, padx=10)
 
     def load_user_photo(self):

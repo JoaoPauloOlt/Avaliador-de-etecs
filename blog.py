@@ -1,20 +1,20 @@
 import tkinter as tk
 from tkinter import ttk, scrolledtext
-from data import load_etecs, load_ratings, get_average_rating
+from data import load_ratings, get_average_rating, load_etecs
 
 class BlogFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
 
-        self.label = tk.Label(self, text="Blog de Avaliações das Etecs", font=("Helvetica", 16, "bold"))
+        self.label = tk.Label(self, text="Blog de Avaliações das Etecs", font=("Helvetica", 12, "bold"))
         self.label.pack(pady=10)
 
         # Filter dropdown
         filter_frame = tk.Frame(self)
         filter_frame.pack(pady=5)
 
-        filter_label = tk.Label(filter_frame, text="Filtrar por Etec:")
+        filter_label = tk.Label(filter_frame, text="Filtrar por Etec:", font=("Helvetica", 8))
         filter_label.pack(side=tk.LEFT, padx=5)
 
         self.etec_var = tk.StringVar()
@@ -26,13 +26,13 @@ class BlogFrame(tk.Frame):
         self.etec_combo.bind("<<ComboboxSelected>>", self.update_display)
 
         # Scrollable text area for displaying ratings
-        self.text_area = scrolledtext.ScrolledText(self, width=80, height=25, wrap=tk.WORD, font=("Helvetica", 10))
-        self.text_area.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
+        self.text_area = scrolledtext.ScrolledText(self, width=40, height=15, wrap=tk.WORD, font=("Helvetica", 8))
+        self.text_area.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
         self.text_area.config(state=tk.DISABLED)  # Make it read-only
 
         # Back button
         back_button = tk.Button(self, text="Voltar ao Menu", command=self.master.show_main_menu,
-                               bg="#2196F3", fg="white", font=("Helvetica", 10, "bold"))
+                               bg="#2196F3", fg="white", font=("Helvetica", 8, "bold"))
         back_button.pack(pady=10)
 
         self.update_display()

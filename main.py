@@ -10,7 +10,17 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Sistema de Avaliação das Etecs")
-        self.geometry("800x600")
+        # Set window size to simulate phone screen
+        window_width = 360
+        window_height = 640
+        # Center the window on the screen
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (screen_width // 2) - (window_width // 2)
+        y = (screen_height // 2) - (window_height // 2)
+        self.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        # Disable resizing
+        self.resizable(False, False)
         self.configure(bg="#f0f0f0")
         self.current_user = None
 
@@ -116,26 +126,30 @@ class App(tk.Tk):
 
 class LoginFrame(tk.Frame):
     def __init__(self, master):
-        super().__init__(master, bg="#f0f0f0", padx=20, pady=20)
+        super().__init__(master, bg="#f0f0f0", padx=10, pady=10)
         self.master = master
 
-        self.custom_font = font.Font(family="Helvetica", size=10, weight="bold")
+        self.custom_font = font.Font(family="Helvetica", size=8, weight="bold")
 
-        self.username_label = tk.Label(self, text="Usuário:", bg="#f0f0f0", font=self.custom_font)
-        self.username_label.grid(row=0, column=0, sticky="w", pady=(0,5))
-        self.username_entry = tk.Entry(self, width=30)
-        self.username_entry.grid(row=1, column=0, pady=(0,10))
+        # Container for centering
+        container = tk.Frame(self, bg="#f0f0f0")
+        container.pack(expand=True)
 
-        self.password_label = tk.Label(self, text="Senha:", bg="#f0f0f0", font=self.custom_font)
-        self.password_label.grid(row=2, column=0, sticky="w", pady=(0,5))
-        self.password_entry = tk.Entry(self, show="*", width=30)
-        self.password_entry.grid(row=3, column=0, pady=(0,10))
+        self.username_label = tk.Label(container, text="Usuário:", bg="#f0f0f0", font=self.custom_font)
+        self.username_label.pack(pady=(0,5))
+        self.username_entry = tk.Entry(container, width=20)
+        self.username_entry.pack(pady=(0,10))
 
-        self.login_button = tk.Button(self, text="Login", command=self.login, bg="#4CAF50", fg="white", width=28, height=1)
-        self.login_button.grid(row=4, column=0, pady=(0,10))
+        self.password_label = tk.Label(container, text="Senha:", bg="#f0f0f0", font=self.custom_font)
+        self.password_label.pack(pady=(0,5))
+        self.password_entry = tk.Entry(container, show="*", width=20)
+        self.password_entry.pack(pady=(0,10))
 
-        self.register_button = tk.Button(self, text="Ir para Cadastro", command=master.show_register, bg="#2196F3", fg="white", width=28, height=1)
-        self.register_button.grid(row=5, column=0)
+        self.login_button = tk.Button(container, text="Login", command=self.login, bg="#4CAF50", fg="white", width=20, height=1)
+        self.login_button.pack(pady=(0,10))
+
+        self.register_button = tk.Button(container, text="Ir para Cadastro", command=master.show_register, bg="#2196F3", fg="white", width=20, height=1)
+        self.register_button.pack()
 
     def login(self):
         username = self.username_entry.get()
@@ -151,31 +165,35 @@ class LoginFrame(tk.Frame):
 
 class RegisterFrame(tk.Frame):
     def __init__(self, master):
-        super().__init__(master, bg="#f0f0f0", padx=20, pady=20)
+        super().__init__(master, bg="#f0f0f0", padx=10, pady=10)
         self.master = master
 
-        self.custom_font = font.Font(family="Helvetica", size=10, weight="bold")
+        self.custom_font = font.Font(family="Helvetica", size=8, weight="bold")
 
-        self.username_label = tk.Label(self, text="Usuário:", bg="#f0f0f0", font=self.custom_font)
-        self.username_label.grid(row=0, column=0, sticky="w", pady=(0,5))
-        self.username_entry = tk.Entry(self, width=30)
-        self.username_entry.grid(row=1, column=0, pady=(0,10))
+        # Container for centering
+        container = tk.Frame(self, bg="#f0f0f0")
+        container.pack(expand=True)
 
-        self.password_label = tk.Label(self, text="Senha:", bg="#f0f0f0", font=self.custom_font)
-        self.password_label.grid(row=2, column=0, sticky="w", pady=(0,5))
-        self.password_entry = tk.Entry(self, show="*", width=30)
-        self.password_entry.grid(row=3, column=0, pady=(0,10))
+        self.username_label = tk.Label(container, text="Usuário:", bg="#f0f0f0", font=self.custom_font)
+        self.username_label.pack(pady=(0,5))
+        self.username_entry = tk.Entry(container, width=20)
+        self.username_entry.pack(pady=(0,10))
 
-        self.confirm_label = tk.Label(self, text="Confirmar Senha:", bg="#f0f0f0", font=self.custom_font)
-        self.confirm_label.grid(row=4, column=0, sticky="w", pady=(0,5))
-        self.confirm_entry = tk.Entry(self, show="*", width=30)
-        self.confirm_entry.grid(row=5, column=0, pady=(0,10))
+        self.password_label = tk.Label(container, text="Senha:", bg="#f0f0f0", font=self.custom_font)
+        self.password_label.pack(pady=(0,5))
+        self.password_entry = tk.Entry(container, show="*", width=20)
+        self.password_entry.pack(pady=(0,10))
 
-        self.register_button = tk.Button(self, text="Cadastrar", command=self.register, bg="#4CAF50", fg="white", width=28, height=1)
-        self.register_button.grid(row=6, column=0, pady=(0,10))
+        self.confirm_label = tk.Label(container, text="Confirmar Senha:", bg="#f0f0f0", font=self.custom_font)
+        self.confirm_label.pack(pady=(0,5))
+        self.confirm_entry = tk.Entry(container, show="*", width=20)
+        self.confirm_entry.pack(pady=(0,10))
 
-        self.login_button = tk.Button(self, text="Ir para Login", command=master.show_login, bg="#2196F3", fg="white", width=28, height=1)
-        self.login_button.grid(row=7, column=0)
+        self.register_button = tk.Button(container, text="Cadastrar", command=self.register, bg="#4CAF50", fg="white", width=20, height=1)
+        self.register_button.pack(pady=(0,10))
+
+        self.login_button = tk.Button(container, text="Ir para Login", command=master.show_login, bg="#2196F3", fg="white", width=20, height=1)
+        self.login_button.pack()
 
     def register(self):
         username = self.username_entry.get()
