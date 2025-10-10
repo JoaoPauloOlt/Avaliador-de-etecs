@@ -31,6 +31,8 @@ class EtecListFrame(tk.Frame):
     def populate_tree(self):
         for etec in self.etecs:
             avg_rating = get_average_rating(etec.id)
+            # Set photo path to images/etecs/etec_<id>.jpg
+            etec.photo_path = f"images/etecs/etec_{etec.id}.jpg"
             self.tree.insert("", "end", iid=etec.id, values=(etec.name, f"{avg_rating:.2f}"))
 
     def on_tree_select(self, event):
