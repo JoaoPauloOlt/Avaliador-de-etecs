@@ -28,6 +28,13 @@ class EtecListFrame(tk.Frame):
                                bg="#2196F3", fg="white", font=("Helvetica", 8, "bold"))
         back_button.pack(pady=10)
 
+    def refresh(self):
+        # Clear the tree
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        # Repopulate
+        self.populate_tree()
+
     def populate_tree(self):
         for etec in self.etecs:
             avg_rating = get_average_rating(etec.id)

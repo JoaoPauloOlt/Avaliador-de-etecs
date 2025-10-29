@@ -68,6 +68,8 @@ class App(tk.Tk):
             self.profile_frame.pack_forget()
         if not self.main_menu_frame:
             self.main_menu_frame = MainMenuFrame(self)
+        else:
+            self.main_menu_frame.update_welcome(self.current_user.username if self.current_user else None)
         self.main_menu_frame.pack(fill=tk.BOTH, expand=True)
 
     def show_etec_list(self):
@@ -83,6 +85,8 @@ class App(tk.Tk):
 
         if not self.etec_list_frame:
             self.etec_list_frame = EtecListFrame(self, self.show_etec_details)
+        else:
+            self.etec_list_frame.refresh()
         self.etec_list_frame.pack(fill=tk.BOTH, expand=True)
 
     def show_etec_details(self, etec):
@@ -225,10 +229,10 @@ class MainMenuFrame(tk.Frame):
         self.label.pack(pady=20)
 
         # Welcome message
-        welcome_text = f"Bem-vindo, {master.current_user.username}!" if master.current_user else "Bem-vindo!"
-        self.welcome_label = tk.Label(self, text=welcome_text,
+        self.welcome_label = tk.Label(self, text="",
                                      font=("Helvetica", 12), bg="#f0f0f0")
         self.welcome_label.pack(pady=10)
+        self.update_welcome(master.current_user.username if master.current_user else None)
 
         # Menu buttons
         button_frame = tk.Frame(self, bg="#f0f0f0")
@@ -253,6 +257,10 @@ class MainMenuFrame(tk.Frame):
                                       bg="#f44336", fg="white", font=("Helvetica", 12, "bold"),
                                       width=20, height=2)
         self.logout_button.pack(pady=10)
+
+    def update_welcome(self, username):
+        welcome_text = f"Bem-vindo, {username}!" if username else "Bem-vindo!"
+        self.welcome_label.config(text=welcome_text)
 
 if __name__ == "__main__":
     app = App()

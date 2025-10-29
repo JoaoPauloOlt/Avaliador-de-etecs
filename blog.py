@@ -30,10 +30,17 @@ class BlogFrame(tk.Frame):
         self.text_area.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
         self.text_area.config(state=tk.DISABLED)  # Make it read-only
 
-        # Back button
-        back_button = tk.Button(self, text="Voltar ao Menu", command=self.master.show_main_menu,
+        # Buttons frame
+        buttons_frame = tk.Frame(self)
+        buttons_frame.pack(pady=10)
+
+        reload_button = tk.Button(buttons_frame, text="Recarregar", command=self.update_display,
+                                 bg="#FF9800", fg="white", font=("Helvetica", 8, "bold"))
+        reload_button.pack(side=tk.LEFT, padx=10)
+
+        back_button = tk.Button(buttons_frame, text="Voltar ao Menu", command=self.master.show_main_menu,
                                bg="#2196F3", fg="white", font=("Helvetica", 8, "bold"))
-        back_button.pack(pady=10)
+        back_button.pack(side=tk.LEFT, padx=10)
 
         self.update_display()
 

@@ -1,18 +1,26 @@
 [
-  {
-    "username": "admin",
-    "password": "123",
-    "name": "Administrador",
-    "email": "admin@etec.sp.gov.br",
-    "photo_path": "",
-    "user_type": "teacher"
-  },
-  {
-    "username": "Paulo",
-    "password": "1234",
-    "name": "",
-    "email": "",
-    "photo_path": "",
-    "user_type": "student"
-  }
+    {
+        "username": "admin",
+        "password": "123",
+        "name": "Administrador",
+        "email": "admin@etec.sp.gov.br",
+        "photo_path": "",
+        "user_type": "teacher"
+    },
+    {
+        "username": "Paulo",
+        "password": "1234",
+        "name": "Paulo",
+        "email": "teste@gmail.com",
+        "photo_path": "",
+        "user_type": "student"
+    },
+    {
+        "username": "Gui",
+        "password": "123",
+        "name": "",
+        "email": "",
+        "photo_path": "",
+        "user_type": "student"
+    }
 ]

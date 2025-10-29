@@ -37,8 +37,8 @@ class EtecDetailsFrame(tk.Frame):
         stars_container = tk.Frame(stars_frame)
         stars_container.pack()
 
-        for i in range(6):  # 0 to 5 stars
-            star_button = tk.Button(stars_container, text=str(i), font=("Helvetica", 12),
+        for i in range(1, 6):  # 1 to 5 stars
+            star_button = tk.Button(stars_container, text="☆", font=("Helvetica", 16),
                                    command=lambda r=i: self.set_rating(r), width=2)
             star_button.pack(side=tk.LEFT, padx=2)
             self.star_buttons.append(star_button)
@@ -84,10 +84,10 @@ class EtecDetailsFrame(tk.Frame):
 
     def update_star_display(self):
         for i, button in enumerate(self.star_buttons):
-            if i == self.selected_rating:
-                button.config(bg="gold", fg="black")
+            if i < self.selected_rating:
+                button.config(text="★", fg="gold")
             else:
-                button.config(bg="white", fg="black")
+                button.config(text="☆", fg="black")
 
     def submit_rating(self):
         comment = self.comment_text.get("1.0", tk.END).strip()
@@ -106,7 +106,7 @@ class EtecDetailsFrame(tk.Frame):
             existing_rating.comment = comment
         else:
             # Create new rating
-            new_rating = Rating(self.etec.id, self.current_user.username, self.selected_rating, comment)
+            new_rating = Rating(None, self.etec.id, self.current_user.username, self.selected_rating, comment)
             ratings.append(new_rating)
 
         save_ratings(ratings)
