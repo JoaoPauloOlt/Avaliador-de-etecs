@@ -2,8 +2,8 @@
     {
         "etec_id": 1,
         "username": "Gui",
-        "stars": 1,
-        "comment": "Pessima",
+        "stars": 3,
+        "comment": "teste",
         "date": "2025-10-29T14:15:23.874300"
     },
     {
@@ -12,5 +12,12 @@
         "stars": 3,
         "comment": "mais ou menos",
         "date": "2025-10-29T14:16:55.825211"
+    },
+    {
+        "etec_id": 1,
+        "username": "admin",
+        "stars": 2,
+        "comment": "Muito boa, não recomendo",
+        "date": "2025-10-29T14:28:44.223232"
     }
 ]

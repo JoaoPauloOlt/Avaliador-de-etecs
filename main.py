@@ -5,6 +5,7 @@ from lista import EtecListFrame
 from etec_details import EtecDetailsFrame
 from blog import BlogFrame
 from profile import ProfileFrame
+from change_password import ChangePasswordFrame
 
 class App(tk.Tk):
     def __init__(self):
@@ -32,6 +33,7 @@ class App(tk.Tk):
         self.etec_details_frame = None
         self.blog_frame = None
         self.profile_frame = None
+        self.change_password_frame = None
 
         self.show_login()
 
@@ -119,10 +121,19 @@ class App(tk.Tk):
             self.etec_details_frame.pack_forget()
         if self.blog_frame:
             self.blog_frame.pack_forget()
+        if self.change_password_frame:
+            self.change_password_frame.pack_forget()
 
         if not self.profile_frame:
             self.profile_frame = ProfileFrame(self, self.current_user, self.show_main_menu)
         self.profile_frame.pack(fill=tk.BOTH, expand=True)
+
+    def show_change_password(self):
+        if self.profile_frame:
+            self.profile_frame.pack_forget()
+
+        self.change_password_frame = ChangePasswordFrame(self, self.current_user, self.show_profile)
+        self.change_password_frame.pack(fill=tk.BOTH, expand=True)
 
     def logout(self):
         self.current_user = None

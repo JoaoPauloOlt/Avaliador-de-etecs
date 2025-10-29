@@ -66,27 +66,10 @@ class ProfileFrame(tk.Frame):
         self.type_entry.config(state="readonly")
         self.type_entry.grid(row=3, column=1, pady=5, padx=(10, 0))
 
-        # Password change section
-        password_frame = tk.Frame(self)
-        password_frame.pack(pady=10, padx=10, fill=tk.X)
-
-        password_title = tk.Label(password_frame, text="Alterar Senha", font=("Helvetica", 10, "bold"))
-        password_title.pack()
-
-        current_pass_label = tk.Label(password_frame, text="Senha Atual:", font=("Helvetica", 8))
-        current_pass_label.pack(anchor="w", pady=(10, 0))
-        self.current_pass_entry = tk.Entry(password_frame, show="*", width=20)
-        self.current_pass_entry.pack(pady=5)
-
-        new_pass_label = tk.Label(password_frame, text="Nova Senha:", font=("Helvetica", 8))
-        new_pass_label.pack(anchor="w", pady=5)
-        self.new_pass_entry = tk.Entry(password_frame, show="*", width=20)
-        self.new_pass_entry.pack(pady=5)
-
-        confirm_pass_label = tk.Label(password_frame, text="Confirmar Nova Senha:", font=("Helvetica", 8))
-        confirm_pass_label.pack(anchor="w", pady=5)
-        self.confirm_pass_entry = tk.Entry(password_frame, show="*", width=20)
-        self.confirm_pass_entry.pack(pady=5)
+        # Change password button
+        change_pass_button = tk.Button(self, text="Alterar Senha", command=self.master.show_change_password,
+                                      bg="#FF9800", fg="white", font=("Helvetica", 8, "bold"))
+        change_pass_button.pack(pady=10)
 
         # Buttons
         buttons_frame = tk.Frame(self)
@@ -139,23 +122,6 @@ class ProfileFrame(tk.Frame):
         self.current_user.name = self.name_entry.get().strip()
         self.current_user.email = self.email_entry.get().strip()
 
-        # Handle password change
-        current_pass = self.current_pass_entry.get()
-        new_pass = self.new_pass_entry.get()
-        confirm_pass = self.confirm_pass_entry.get()
-
-        if new_pass or confirm_pass:
-            if current_pass != self.current_user.password:
-                messagebox.showerror("Erro", "Senha atual incorreta.")
-                return
-            if new_pass != confirm_pass:
-                messagebox.showerror("Erro", "Nova senha e confirmação não coincidem.")
-                return
-            if len(new_pass) < 3:
-                messagebox.showerror("Erro", "Nova senha deve ter pelo menos 3 caracteres.")
-                return
-            self.current_user.password = new_pass
-
         # Save to file
         users = load_users()
         for i, user in enumerate(users):
@@ -165,8 +131,3 @@ class ProfileFrame(tk.Frame):
         save_users(users)
 
         messagebox.showinfo("Sucesso", "Perfil atualizado com sucesso!")
-
-        # Clear password fields
-        self.current_pass_entry.delete(0, tk.END)
-        self.new_pass_entry.delete(0, tk.END)
-        self.confirm_pass_entry.delete(0, tk.END)

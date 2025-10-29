@@ -13,7 +13,7 @@ class EtecDetailsFrame(tk.Frame):
         self.on_back = on_back
 
         self.star_buttons = []
-        self.selected_rating = 0
+        self.selected_rating = 1
 
         self.create_widgets()
 
@@ -92,7 +92,7 @@ class EtecDetailsFrame(tk.Frame):
     def submit_rating(self):
         comment = self.comment_text.get("1.0", tk.END).strip()
 
-        if self.selected_rating == 0 and not comment:
+        if self.selected_rating < 1 and not comment:
             messagebox.showwarning("Aviso", "Por favor, forneça uma avaliação ou comentário.")
             return
 
