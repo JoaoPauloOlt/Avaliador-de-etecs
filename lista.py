@@ -14,7 +14,7 @@ class EtecListFrame(tk.Frame):
 
         self.tree = ttk.Treeview(self, columns=("name", "avg_rating"), show="headings", selectmode="browse")
         self.tree.heading("name", text="Nome da ETEC")
-        self.tree.heading("avg_rating", text="Avaliação Média")
+        self.tree.heading("avg_rating", text="Média (0-5 estrelas)")
         self.tree.column("name", width=150)
         self.tree.column("avg_rating", width=80, anchor="center")
         self.tree.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)

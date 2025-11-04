@@ -62,7 +62,7 @@ class BlogFrame(tk.Frame):
                     self.text_area.insert(tk.END, f"Avaliação média: {avg_rating:.2f} estrelas\n\n", "avg_rating")
 
                     for rating in sorted(etec_ratings, key=lambda x: x.date, reverse=True):
-                        stars = "⭐" * rating.stars
+                        stars = "⭐" * rating.stars if rating.stars > 0 else "Sem estrelas"
                         date_str = rating.date.strftime("%d/%m/%Y %H:%M") if rating.date else "Data desconhecida"
                         self.text_area.insert(tk.END, f"Usuário: {rating.username} | {stars} | {date_str}\n", "rating_header")
                         if rating.comment:
@@ -79,7 +79,7 @@ class BlogFrame(tk.Frame):
 
                 if etec_ratings:
                     for rating in sorted(etec_ratings, key=lambda x: x.date, reverse=True):
-                        stars = "⭐" * rating.stars
+                        stars = "⭐" * rating.stars if rating.stars > 0 else "Sem estrelas"
                         date_str = rating.date.strftime("%d/%m/%Y %H:%M") if rating.date else "Data desconhecida"
                         self.text_area.insert(tk.END, f"Usuário: {rating.username} | {stars} | {date_str}\n", "rating_header")
                         if rating.comment:

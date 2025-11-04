@@ -204,8 +204,17 @@ class RegisterFrame(tk.Frame):
         self.confirm_entry = tk.Entry(container, show="*", width=20)
         self.confirm_entry.pack(pady=(0,10))
 
+        # User type selection
+        self.user_type_label = tk.Label(container, text="Tipo de Usuário:", bg="#f0f0f0", font=self.custom_font)
+        self.user_type_label.pack(pady=(0,5))
+        self.user_type_var = tk.StringVar(value="student")
+        self.student_radio = tk.Radiobutton(container, text="Estudante", variable=self.user_type_var, value="student", bg="#f0f0f0", font=self.custom_font)
+        self.student_radio.pack()
+        self.teacher_radio = tk.Radiobutton(container, text="Professor", variable=self.user_type_var, value="teacher", bg="#f0f0f0", font=self.custom_font)
+        self.teacher_radio.pack()
+
         self.register_button = tk.Button(container, text="Cadastrar", command=self.register, bg="#4CAF50", fg="white", width=20, height=1)
-        self.register_button.pack(pady=(0,10))
+        self.register_button.pack(pady=(10,10))
 
         self.login_button = tk.Button(container, text="Ir para Login", command=master.show_login, bg="#2196F3", fg="white", width=20, height=1)
         self.login_button.pack()
@@ -214,6 +223,7 @@ class RegisterFrame(tk.Frame):
         username = self.username_entry.get()
         password = self.password_entry.get()
         confirm = self.confirm_entry.get()
+        user_type = self.user_type_var.get() if hasattr(self, 'user_type_var') else "student"
         if password != confirm:
             messagebox.showerror("Erro", "Senhas não coincidem")
         elif not username or not password:
@@ -224,7 +234,7 @@ class RegisterFrame(tk.Frame):
                 messagebox.showerror("Erro", "Usuário já existe")
                 return
 
-            new_user = User(username, password, user_type="student")
+            new_user = User(username, password, user_type=user_type)
             users.append(new_user)
             save_users(users)
             messagebox.showinfo("Sucesso", "Cadastro realizado!")

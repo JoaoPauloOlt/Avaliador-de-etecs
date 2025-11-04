@@ -1,32 +1,92 @@
 [
   {
     "id": 1,
-    "name": "ETEC de São Paulo",
+    "name": "Etec Abdias do Nascimento (Paraisópolis)",
     "city": "São Paulo",
-    "photo_path": "photos/etec_sp.jpg"
+    "photo_path": "images/etecs/etec_1.jpg"
   },
   {
     "id": 2,
-    "name": "ETEC de Campinas",
-    "city": "Campinas",
-    "photo_path": "photos/etec_campinas.jpg"
+    "name": "Etec Albert Einstein (Casa Verde)",
+    "city": "São Paulo",
+    "photo_path": "images/etecs/etec_2.jpg"
   },
   {
     "id": 3,
-    "name": "ETEC de Santos",
-    "city": "Santos",
-    "photo_path": "photos/etec_santos.jpg"
+    "name": "Etec Alcides Cestari",
+    "city": "Ribeirão Preto",
+    "photo_path": "images/etecs/etec_3.jpg"
   },
   {
     "id": 4,
-    "name": "ETEC de Ribeirão Preto",
-    "city": "Ribeirão Preto",
-    "photo_path": "photos/etec_rp.jpg"
+    "name": "Etec Alckmin Dr. Geraldo José Rodrigues",
+    "city": "São José dos Campos",
+    "photo_path": "images/etecs/etec_4.jpg"
   },
   {
     "id": 5,
-    "name": "ETEC de São José dos Campos",
-    "city": "São José dos Campos",
-    "photo_path": "photos/etec_sjc.jpg"
+    "name": "Etec Amim Jundi",
+    "city": "Presidente Prudente",
+    "photo_path": "images/etecs/etec_5.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Etec Angelo Cavalheiro",
+    "city": "Ribeirão Preto",
+    "photo_path": "images/etecs/etec_6.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Etec Antonio Furlan",
+    "city": "Metropolitana de São Paulo",
+    "photo_path": "images/etecs/etec_7.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Etec Antonio Junqueira da Veiga",
+    "city": "Franca",
+    "photo_path": "images/etecs/etec_8.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Etec Antonio de Pádua Cardoso",
+    "city": "Franca",
+    "photo_path": "images/etecs/etec_9.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Etec Aristóteles Ferreira",
+    "city": "Santos",
+    "photo_path": "images/etecs/etec_10.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Etec Araçatuba - Etec de Araçatuba",
+    "city": "Araçatuba",
+    "photo_path": "images/etecs/etec_11.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Etec Augusto Tortolero Araújo",
+    "city": "Marília",
+    "photo_path": "images/etecs/etec_12.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Etec Astor de Mattos Carvalho",
+    "city": "Bauru",
+    "photo_path": "images/etecs/etec_13.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Etec Bartolomeu Bueno da Silva – Anhanguera",
+    "city": "Metropolitana de São Paulo",
+    "photo_path": "images/etecs/etec_14.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Etec Benedito Storani",
+    "city": "Campinas",
+    "photo_path": "images/etecs/etec_15.jpg"
   }
 ]

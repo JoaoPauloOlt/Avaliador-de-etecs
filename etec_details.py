@@ -13,7 +13,7 @@ class EtecDetailsFrame(tk.Frame):
         self.on_back = on_back
 
         self.star_buttons = []
-        self.selected_rating = 1
+        self.selected_rating = 0
 
         self.create_widgets()
 
@@ -37,7 +37,7 @@ class EtecDetailsFrame(tk.Frame):
         stars_container = tk.Frame(stars_frame)
         stars_container.pack()
 
-        for i in range(1, 6):  # 1 to 5 stars
+        for i in range(0, 6):  # 0 to 5 stars
             star_button = tk.Button(stars_container, text="☆", font=("Helvetica", 16),
                                    command=lambda r=i: self.set_rating(r), width=2)
             star_button.pack(side=tk.LEFT, padx=2)
@@ -92,7 +92,7 @@ class EtecDetailsFrame(tk.Frame):
     def submit_rating(self):
         comment = self.comment_text.get("1.0", tk.END).strip()
 
-        if self.selected_rating < 1 and not comment:
+        if self.selected_rating == 0 and not comment:
             messagebox.showwarning("Aviso", "Por favor, forneça uma avaliação ou comentário.")
             return
 
