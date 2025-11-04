@@ -10,9 +10,9 @@
     {
         "username": "Paulo",
         "password": "1234",
-        "name": "Paulo",
+        "name": "João Paulo",
         "email": "teste@gmail.com",
-        "photo_path": "",
+        "photo_path": "user_photos\\Paulo_photo.jpg",
         "user_type": "student"
     },
     {

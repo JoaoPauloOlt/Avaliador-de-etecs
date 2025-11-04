@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, ImageDraw
 import os
 from data import User, load_users, save_users
 
@@ -87,8 +87,38 @@ class ProfileFrame(tk.Frame):
         try:
             if self.current_user.photo_path and os.path.exists(self.current_user.photo_path):
                 image = Image.open(self.current_user.photo_path)
-                image = image.resize((150, 150), Image.Resampling.LANCZOS)
-                self.photo_image = ImageTk.PhotoImage(image)
+
+                # Limit the image size to 150x150
+                image.thumbnail((150, 150), Image.Resampling.LANCZOS)
+
+                # Create a new image with transparent background for the circular photo
+                size = 150
+                circular_image = Image.new('RGBA', (size, size), (255, 255, 255, 0))
+
+                # Calculate position to center the image
+                x = (size - image.width) // 2
+                y = (size - image.height) // 2
+
+                # Paste the resized image onto the circular image
+                circular_image.paste(image, (x, y))
+
+                # Create a circular mask
+                mask = Image.new('L', (size, size), 0)
+                draw = ImageDraw.Draw(mask)
+                draw.ellipse((0, 0, size, size), fill=255)
+
+                # Apply the mask to create circular image
+                circular_image.putalpha(mask)
+
+                # Add a border
+                border_color = (0, 0, 0, 255)  # Black border
+                border_width = 3
+                bordered_image = Image.new('RGBA', (size + 2 * border_width, size + 2 * border_width), (255, 255, 255, 0))
+                draw_border = ImageDraw.Draw(bordered_image)
+                draw_border.ellipse((0, 0, size + 2 * border_width, size + 2 * border_width), fill=border_color)
+                bordered_image.paste(circular_image, (border_width, border_width), circular_image)
+
+                self.photo_image = ImageTk.PhotoImage(bordered_image)
                 self.photo_label.config(image=self.photo_image, text="")
             else:
                 self.photo_label.config(text="[Sem foto]", image="")
