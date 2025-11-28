@@ -1,60 +1,74 @@
-# Avaliador-de-etecs
+# Avaliador de ETECs
 
-Um aplicativo que avalia a "qualidade" das ETECs através de comentários de alunos ou professores da instituição.
+Um aplicativo desktop desenvolvido em Python para avaliação da qualidade das Escolas Técnicas Estaduais (ETECs) do estado de São Paulo, baseado em comentários e avaliações de alunos e professores. O sistema permite que usuários registrados compartilhem experiências e opiniões sobre as instituições, promovendo transparência e auxiliando na escolha educacional.
 
-## Como Funciona
+## Funcionalidades Principais
 
-O aplicativo permite que usuários (alunos e professores) façam login ou se cadastrem para avaliar ETECs. As principais funcionalidades incluem:
+- **Autenticação de Usuários**: Sistema de login e cadastro para alunos e professores.
+- **Lista de ETECs**: Visualização de uma lista completa de ETECs disponíveis para avaliação.
+- **Detalhes da ETEC**: Informações detalhadas sobre cada instituição, incluindo avaliações, comentários e imagens.
+- **Sistema de Avaliação**: Possibilidade de avaliar ETECs com estrelas (1-5) e comentários.
+- **Blog de Avaliações**: Plataforma para visualizar todas as avaliações e comentários publicados.
+- **Perfil do Usuário**: Gerenciamento de perfil pessoal, incluindo foto (exibida com borda arredondada), nome, email e alteração de senha.
+- **Interface Intuitiva**: Design responsivo simulando uma tela de celular, desenvolvido com Tkinter.
 
-- **Lista de ETECs**: Visualize uma lista de ETECs disponíveis para avaliação.
-- **Detalhes da ETEC**: Veja informações detalhadas sobre uma ETEC específica, incluindo avaliações e comentários.
-- **Blog de Avaliações**: Acesse um blog com todas as avaliações e comentários feitos pelos usuários.
-- **Perfil do Usuário**: Gerencie seu perfil, incluindo alteração de foto (que é exibida arredondada com borda), nome, email e senha.
+## Pré-requisitos
 
-O aplicativo utiliza uma interface gráfica em Tkinter, simulando uma tela de celular, e armazena dados em arquivos JSON locais.
+- **Python**: Versão 3.7 ou superior instalada no sistema.
+- **Sistema Operacional**: Compatível com Windows, macOS ou Linux.
 
-## Instalação e Execução
+## Instalação
 
-### Pré-requisitos
+Siga os passos abaixo para configurar o ambiente de desenvolvimento e executar o aplicativo:
 
-- Python 3.7 ou superior instalado no sistema.
+### 1. Clonagem do Repositório
 
-### Passos para Instalação
+Clone o repositório para sua máquina local:
 
-1. **Clone o repositório**:
-   ```bash
-   git clone https://github.com/seu-usuario/avaliador-de-etecs.git
-   cd avaliador-de-etecs
-   ```
+```bash
+git clone https://github.com/seu-usuario/avaliador-de-etecs.git
+cd avaliador-de-etecs
+```
 
-2. **Instale as dependências**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 2. Instalação das Dependências
 
-### Como Executar
+Instale as bibliotecas necessárias utilizando o arquivo `requirements.txt`:
 
-1. Execute o aplicativo principal:
-   ```bash
-   python main.py
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-2. A interface gráfica será aberta. Faça login ou cadastre-se para começar a usar o aplicativo.
+Este comando instalará automaticamente as seguintes dependências:
+- **Pillow**: Para manipulação e exibição de imagens de perfil.
+- **psycopg2-binary**: Preparado para futuras integrações com banco de dados PostgreSQL (atualmente o sistema utiliza arquivos JSON locais).
 
-## Dependências
+## Execução
 
-- **Pillow**: Para manipulação de imagens (usado para exibir fotos de perfil arredondadas).
-- **psycopg2-binary**: Para conexão com banco de dados PostgreSQL (embora o aplicativo atual use arquivos JSON locais, essa dependência pode ser usada para futuras expansões).
+Após a instalação, execute o aplicativo seguindo estes passos:
 
-## Estrutura do Projeto
+### 1. Inicialização do Aplicativo
 
-- `main.py`: Arquivo principal que inicia a aplicação.
-- `data.py`: Gerenciamento de dados (usuários, ETECs, avaliações).
-- `profile.py`: Tela de perfil do usuário.
-- `lista.py`: Lista de ETECs.
-- `etec_details.py`: Detalhes de uma ETEC específica.
-- `blog.py`: Blog de avaliações.
-- `change_password.py`: Alteração de senha.
-- `data/`: Diretório com arquivos JSON de dados.
-- `images/`: Imagens das ETECs.
-- `user_photos/`: Fotos de perfil dos usuários.
+Execute o arquivo principal `main.py` para iniciar a aplicação:
+
+```bash
+py main.py
+```
+
+### 2. Uso da Aplicação
+
+1. **Tela Inicial**: A interface gráfica será aberta, simulando uma tela de celular.
+2. **Cadastro/Login**: Selecione "Ir para Cadastro" para criar uma nova conta ou faça login com credenciais existentes.
+3. **Navegação**: Após o login, acesse as funcionalidades através do menu principal:
+   - **Lista de Etecs**: Visualize e selecione ETECs para avaliação.
+   - **Blog de Avaliações**: Leia comentários e avaliações de outros usuários.
+   - **Meu Perfil**: Gerencie suas informações pessoais.
+4. **Avaliação**: Em uma ETEC específica, adicione estrelas e comentários para contribuir com a comunidade.
+
+
+## Tecnologias Utilizadas
+
+- **Python 3.7+**: Linguagem de programação principal.
+- **Tkinter**: Biblioteca padrão para criação da interface gráfica.
+- **Pillow**: Manipulação de imagens para fotos de perfil.
+- **JSON**: Armazenamento local de dados (usuários, ETECs, avaliações).
+- **psycopg2-binary**: Preparado para integração futura com PostgreSQL.

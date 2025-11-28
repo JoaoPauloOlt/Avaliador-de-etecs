@@ -22,5 +22,13 @@
         "email": "",
         "photo_path": "",
         "user_type": "student"
+    },
+    {
+        "username": "Robson",
+        "password": "1234",
+        "name": "",
+        "email": "",
+        "photo_path": "",
+        "user_type": "teacher"
     }
 ]

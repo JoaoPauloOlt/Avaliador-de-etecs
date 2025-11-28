@@ -2,7 +2,6 @@ import json
 import os
 from datetime import datetime
 
-# Data file paths
 DATA_DIR = 'data'
 ETECS_FILE = os.path.join(DATA_DIR, 'etecs.json')
 USERS_FILE = os.path.join(DATA_DIR, 'users.json')
@@ -35,7 +34,7 @@ class User:
         self.name = name
         self.email = email
         self.photo_path = photo_path
-        self.user_type = user_type  # "student" or "teacher"
+        self.user_type = user_type 
 
     def to_dict(self):
         return {
@@ -80,7 +79,7 @@ class Rating:
     def from_dict(cls, data):
         date = datetime.fromisoformat(data["date"]) if "date" in data else None
         return cls(
-            None,  # id not needed for JSON
+            None,
             data["etec_id"],
             data["username"],
             data["stars"],
@@ -88,7 +87,6 @@ class Rating:
             date
         )
 
-# Data management functions
 def load_etecs():
     if not os.path.exists(ETECS_FILE):
         return []

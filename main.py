@@ -11,21 +11,17 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Sistema de Avaliação das Etecs")
-        # Set window size to simulate phone screen
         window_width = 360
         window_height = 640
-        # Center the window on the screen
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
         x = (screen_width // 2) - (window_width // 2)
         y = (screen_height // 2) - (window_height // 2)
         self.geometry(f"{window_width}x{window_height}+{x}+{y}")
-        # Disable resizing
         self.resizable(False, False)
         self.configure(bg="#f0f0f0")
         self.current_user = None
 
-        # Initialize frames
         self.login_frame = LoginFrame(self)
         self.register_frame = RegisterFrame(self)
         self.main_menu_frame = None
@@ -38,7 +34,6 @@ class App(tk.Tk):
         self.show_login()
 
     def show_login(self):
-        # Hide all frames
         self.register_frame.grid_forget()
         if self.main_menu_frame:
             self.main_menu_frame.pack_forget()
@@ -75,7 +70,6 @@ class App(tk.Tk):
         self.main_menu_frame.pack(fill=tk.BOTH, expand=True)
 
     def show_etec_list(self):
-        # Hide other frames
         if self.main_menu_frame:
             self.main_menu_frame.pack_forget()
         if self.etec_details_frame:
@@ -146,7 +140,6 @@ class LoginFrame(tk.Frame):
 
         self.custom_font = font.Font(family="Helvetica", size=8, weight="bold")
 
-        # Container for centering
         container = tk.Frame(self, bg="#f0f0f0")
         container.pack(expand=True)
 
@@ -185,7 +178,6 @@ class RegisterFrame(tk.Frame):
 
         self.custom_font = font.Font(family="Helvetica", size=8, weight="bold")
 
-        # Container for centering
         container = tk.Frame(self, bg="#f0f0f0")
         container.pack(expand=True)
 
@@ -204,7 +196,6 @@ class RegisterFrame(tk.Frame):
         self.confirm_entry = tk.Entry(container, show="*", width=20)
         self.confirm_entry.pack(pady=(0,10))
 
-        # User type selection
         self.user_type_label = tk.Label(container, text="Tipo de Usuário:", bg="#f0f0f0", font=self.custom_font)
         self.user_type_label.pack(pady=(0,5))
         self.user_type_var = tk.StringVar(value="student")
@@ -249,13 +240,11 @@ class MainMenuFrame(tk.Frame):
         self.label = tk.Label(self, text="Avaliador de etecs", font=("Helvetica", 18, "bold"), bg="#f0f0f0")
         self.label.pack(pady=20)
 
-        # Welcome message
         self.welcome_label = tk.Label(self, text="",
                                      font=("Helvetica", 12), bg="#f0f0f0")
         self.welcome_label.pack(pady=10)
         self.update_welcome(master.current_user.username if master.current_user else None)
 
-        # Menu buttons
         button_frame = tk.Frame(self, bg="#f0f0f0")
         button_frame.pack(pady=30)
 

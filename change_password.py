@@ -12,11 +12,9 @@ class ChangePasswordFrame(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        # Title
         title_label = tk.Label(self, text="Alterar Senha", font=("Helvetica", 12, "bold"))
         title_label.pack(pady=10)
 
-        # Password fields
         fields_frame = tk.Frame(self)
         fields_frame.pack(pady=20, padx=10, fill=tk.X)
 
@@ -35,7 +33,6 @@ class ChangePasswordFrame(tk.Frame):
         self.confirm_pass_entry = tk.Entry(fields_frame, show="*", width=20)
         self.confirm_pass_entry.grid(row=2, column=1, pady=5, padx=(10, 0))
 
-        # Buttons
         buttons_frame = tk.Frame(self)
         buttons_frame.pack(pady=20)
 
@@ -70,7 +67,6 @@ class ChangePasswordFrame(tk.Frame):
 
         self.current_user.password = new_pass
 
-        # Save to file
         users = load_users()
         for i, user in enumerate(users):
             if user.username == self.current_user.username:
@@ -80,10 +76,8 @@ class ChangePasswordFrame(tk.Frame):
 
         messagebox.showinfo("Sucesso", "Senha alterada com sucesso!")
 
-        # Clear fields
         self.current_pass_entry.delete(0, tk.END)
         self.new_pass_entry.delete(0, tk.END)
         self.confirm_pass_entry.delete(0, tk.END)
 
-        # Go back
         self.on_back()

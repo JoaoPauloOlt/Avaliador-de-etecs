@@ -15,11 +15,9 @@ class ProfileFrame(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        # Title
         title_label = tk.Label(self, text="Perfil do Usuário", font=("Helvetica", 12, "bold"))
         title_label.pack(pady=10)
 
-        # Photo section
         photo_frame = tk.Frame(self)
         photo_frame.pack(pady=10)
 
@@ -31,11 +29,9 @@ class ProfileFrame(tk.Frame):
 
         self.load_user_photo()
 
-        # User info section
         info_frame = tk.Frame(self)
         info_frame.pack(pady=10, padx=10, fill=tk.X)
 
-        # Username (read-only)
         username_label = tk.Label(info_frame, text="Usuário:", font=("Helvetica", 8, "bold"))
         username_label.grid(row=0, column=0, sticky="w", pady=5)
         self.username_entry = tk.Entry(info_frame, width=20)
@@ -43,35 +39,30 @@ class ProfileFrame(tk.Frame):
         self.username_entry.config(state="readonly")
         self.username_entry.grid(row=0, column=1, pady=5, padx=(10, 0))
 
-        # Name
         name_label = tk.Label(info_frame, text="Nome:", font=("Helvetica", 8, "bold"))
         name_label.grid(row=1, column=0, sticky="w", pady=5)
         self.name_entry = tk.Entry(info_frame, width=20)
         self.name_entry.insert(0, self.current_user.name)
         self.name_entry.grid(row=1, column=1, pady=5, padx=(10, 0))
 
-        # Email
         email_label = tk.Label(info_frame, text="Email:", font=("Helvetica", 8, "bold"))
         email_label.grid(row=2, column=0, sticky="w", pady=5)
         self.email_entry = tk.Entry(info_frame, width=20)
         self.email_entry.insert(0, self.current_user.email)
         self.email_entry.grid(row=2, column=1, pady=5, padx=(10, 0))
 
-        # User type (read-only)
         type_label = tk.Label(info_frame, text="Tipo:", font=("Helvetica", 8, "bold"))
         type_label.grid(row=3, column=0, sticky="w", pady=5)
-        user_type_display = "Professor" if self.current_user.user_type == "teacher" else "Estudante"
+        user_type_display = "Professor" if self.current_user.user_type == "Professor" else "Estudante"
         self.type_entry = tk.Entry(info_frame, width=20)
         self.type_entry.insert(0, user_type_display)
         self.type_entry.config(state="readonly")
         self.type_entry.grid(row=3, column=1, pady=5, padx=(10, 0))
 
-        # Change password button
         change_pass_button = tk.Button(self, text="Alterar Senha", command=self.master.show_change_password,
                                       bg="#FF9800", fg="white", font=("Helvetica", 8, "bold"))
         change_pass_button.pack(pady=10)
 
-        # Buttons
         buttons_frame = tk.Frame(self)
         buttons_frame.pack(pady=20)
 
@@ -88,30 +79,21 @@ class ProfileFrame(tk.Frame):
             if self.current_user.photo_path and os.path.exists(self.current_user.photo_path):
                 image = Image.open(self.current_user.photo_path)
 
-                # Limit the image size to 150x150
                 image.thumbnail((150, 150), Image.Resampling.LANCZOS)
-
-                # Create a new image with transparent background for the circular photo
                 size = 150
                 circular_image = Image.new('RGBA', (size, size), (255, 255, 255, 0))
 
-                # Calculate position to center the image
                 x = (size - image.width) // 2
                 y = (size - image.height) // 2
-
-                # Paste the resized image onto the circular image
                 circular_image.paste(image, (x, y))
 
-                # Create a circular mask
                 mask = Image.new('L', (size, size), 0)
                 draw = ImageDraw.Draw(mask)
                 draw.ellipse((0, 0, size, size), fill=255)
 
-                # Apply the mask to create circular image
                 circular_image.putalpha(mask)
 
-                # Add a border
-                border_color = (0, 0, 0, 255)  # Black border
+                border_color = (0, 0, 0, 255)
                 border_width = 3
                 bordered_image = Image.new('RGBA', (size + 2 * border_width, size + 2 * border_width), (255, 255, 255, 0))
                 draw_border = ImageDraw.Draw(bordered_image)
@@ -132,7 +114,6 @@ class ProfileFrame(tk.Frame):
             filetypes=[("Imagens", "*.png *.jpg *.jpeg *.gif *.bmp")]
         )
         if file_path:
-            # Copy file to user photos directory
             os.makedirs("user_photos", exist_ok=True)
             filename = f"{self.current_user.username}_photo{os.path.splitext(file_path)[1]}"
             dest_path = os.path.join("user_photos", filename)
@@ -148,11 +129,9 @@ class ProfileFrame(tk.Frame):
                 messagebox.showerror("Erro", f"Erro ao salvar foto: {e}")
 
     def save_changes(self):
-        # Update user info
         self.current_user.name = self.name_entry.get().strip()
         self.current_user.email = self.email_entry.get().strip()
 
-        # Save to file
         users = load_users()
         for i, user in enumerate(users):
             if user.username == self.current_user.username:

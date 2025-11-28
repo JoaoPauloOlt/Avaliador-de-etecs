@@ -10,7 +10,6 @@ class BlogFrame(tk.Frame):
         self.label = tk.Label(self, text="Blog de Avaliações das Etecs", font=("Helvetica", 12, "bold"))
         self.label.pack(pady=10)
 
-        # Filter dropdown
         filter_frame = tk.Frame(self)
         filter_frame.pack(pady=5)
 
@@ -25,12 +24,10 @@ class BlogFrame(tk.Frame):
         self.etec_combo.pack(side=tk.LEFT, padx=5)
         self.etec_combo.bind("<<ComboboxSelected>>", self.update_display)
 
-        # Scrollable text area for displaying ratings
         self.text_area = scrolledtext.ScrolledText(self, width=40, height=15, wrap=tk.WORD, font=("Helvetica", 8))
         self.text_area.pack(pady=10, padx=10, fill=tk.BOTH, expand=True)
-        self.text_area.config(state=tk.DISABLED)  # Make it read-only
+        self.text_area.config(state=tk.DISABLED)
 
-        # Buttons frame
         buttons_frame = tk.Frame(self)
         buttons_frame.pack(pady=10)
 
@@ -53,12 +50,11 @@ class BlogFrame(tk.Frame):
         ratings = load_ratings()
 
         if selected_etec == "Todas":
-            # Show all ratings grouped by Etec
             for etec in etecs:
                 etec_ratings = [r for r in ratings if r.etec_id == etec.id]
                 if etec_ratings:
                     avg_rating = get_average_rating(etec.id)
-                    self.text_area.insert(tk.END, f"🏫 {etec.name} ({etec.city})\n", "etec_title")
+                    self.text_area.insert(tk.END, f" {etec.name} ({etec.city})\n", "etec_title")
                     self.text_area.insert(tk.END, f"Avaliação média: {avg_rating:.2f} estrelas\n\n", "avg_rating")
 
                     for rating in sorted(etec_ratings, key=lambda x: x.date, reverse=True):
@@ -74,7 +70,7 @@ class BlogFrame(tk.Frame):
             if etec:
                 etec_ratings = [r for r in ratings if r.etec_id == etec.id]
                 avg_rating = get_average_rating(etec.id)
-                self.text_area.insert(tk.END, f"🏫 {etec.name} ({etec.city})\n", "etec_title")
+                self.text_area.insert(tk.END, f" {etec.name} ({etec.city})\n", "etec_title")
                 self.text_area.insert(tk.END, f"Avaliação média: {avg_rating:.2f} estrelas\n\n", "avg_rating")
 
                 if etec_ratings:
@@ -88,7 +84,6 @@ class BlogFrame(tk.Frame):
                 else:
                     self.text_area.insert(tk.END, "Nenhuma avaliação encontrada para esta Etec.\n", "no_ratings")
 
-        # Configure tags for styling
         self.text_area.tag_config("etec_title", font=("Helvetica", 12, "bold"), foreground="blue")
         self.text_area.tag_config("avg_rating", font=("Helvetica", 10, "italic"), foreground="green")
         self.text_area.tag_config("rating_header", font=("Helvetica", 10, "bold"))
