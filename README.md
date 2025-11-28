@@ -72,3 +72,4 @@ py main.py
 - **Pillow**: Manipulação de imagens para fotos de perfil.
 - **JSON**: Armazenamento local de dados (usuários, ETECs, avaliações).
 - **psycopg2-binary**: Preparado para integração futura com PostgreSQL.
+ :)
